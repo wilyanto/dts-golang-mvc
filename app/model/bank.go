@@ -73,9 +73,9 @@ func InsertNewAccount(account Account) (bool, error) {
 	return true, nil
 }
 
-func GetAccountDetail(idAccount int) (bool,error, []Transaction,Account){
+func (account Account) GetAccountDetail(idAccount int) (bool,error, []Transaction,Account){
 	var transaction []Transaction
-	var account Account
+
 	if err := account.DB.Where("sender = ? OR recipient = ?",idAccount,idAccount).
 		Find(&transaction).Error;err!=nil{
 		if err == gorm.ErrRecordNotFound{
@@ -93,10 +93,5 @@ func GetAccountDetail(idAccount int) (bool,error, []Transaction,Account){
 		}
 	}
 
-	return true,nil,transaction,Account{
-		IdAccount:     account.IdAccount,
-		Name:          account.Name,
-		AccountNumber: account.AccountNumber,
-		Saldo:         account.Saldo,
-	}
+	return true,nil, transaction, account
 }
