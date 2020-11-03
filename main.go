@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/FadhlanHawali/Digitalent-Kominfo_Implementation-MVC-Golang/app/config"
-	"github.com/FadhlanHawali/Digitalent-Kominfo_Implementation-MVC-Golang/app/controller"
+	"DTS_IT_Perbankan_Back_End/Digitalent-Kominfo_Implementation-MVC-Golang/app/config"
+	"DTS_IT_Perbankan_Back_End/Digitalent-Kominfo_Implementation-MVC-Golang/app/controller"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )

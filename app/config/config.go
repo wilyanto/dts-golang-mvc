@@ -2,7 +2,7 @@ package config
 
 import (
 	"fmt"
-	"github.com/FadhlanHawali/Digitalent-Kominfo_Implementation-MVC-Golang/app/model"
+	"DTS_IT_Perbankan_Back_End/Digitalent-Kominfo_Implementation-MVC-Golang/app/model"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
