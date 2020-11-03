@@ -9,6 +9,11 @@ type Account struct {
 	Transaction []Transaction `gorm:"ForeignKey:IdAccountRefer" json:"transaction"`
 }
 
+type Auth struct {
+	Name string `json:"name"`
+	Password string `json:"password"`
+}
+
 type Transaction struct {
 	ID int `gorm:"primary_key" json:"-"`
 	IdAccountRefer int `json:"-"`
