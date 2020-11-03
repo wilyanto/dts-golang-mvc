@@ -72,3 +72,31 @@ func InsertNewAccount(account Account) (bool, error) {
 	}
 	return true, nil
 }
+
+func GetAccountDetail(idAccount int) (bool,error, []Transaction,Account){
+	var transaction []Transaction
+	var account Account
+	if err := account.DB.Where("sender = ? OR recipient = ?",idAccount,idAccount).
+		Find(&transaction).Error;err!=nil{
+		if err == gorm.ErrRecordNotFound{
+			return false,errors.Errorf("Account not found"), []Transaction{},Account{}
+		} else {
+			return false, errors.Errorf("invalid prepare statement :%+v\n", err), []Transaction{},Account{}
+		}
+	}
+
+	if err := account.DB.Where(&Account{AccountNumber: idAccount}).Find(&account).Error;err != nil{
+		if err == gorm.ErrRecordNotFound{
+			return false,errors.Errorf("Account not found"), []Transaction{},Account{}
+		} else {
+			return false, errors.Errorf("invalid prepare statement :%+v\n", err), []Transaction{},Account{}
+		}
+	}
+
+	return true,nil,transaction,Account{
+		IdAccount:     account.IdAccount,
+		Name:          account.Name,
+		AccountNumber: account.AccountNumber,
+		Saldo:         account.Saldo,
+	}
+}
